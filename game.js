@@ -46,19 +46,26 @@ $(document).on("keyup", game);
  * whether the userClickedPattern equals the gamePattern
  */
 function checkAnswer(){
-    for (var i = 0; i < gamePattern.length; i++){
-        if (gamePattern[i] !== userClickedPattern[i]) {
-            console.log("wrong");
-            gameOver();
-            setTimeout(gameOverReset,200);
-            return;
+    if (gamePattern.length===userClickedPattern.length) {
+        for (var i = 0; i < gamePattern.length; i++){
+            if (gamePattern[i] !== userClickedPattern[i]) {
+                console.log("wrong");
+                gameOver();
+                setTimeout(gameOverReset,200);
+                return;
+            }
+            else {
+                console.log("success");
+                level += 1;
+                return setTimeout(game,3000);
+            }
         }
-        else {
-            console.log("success");
-            level += 1;
-            return setTimeout(game,3000);
-        }
-    }
+    } else {
+        console.log("wrong");
+                gameOver();
+                setTimeout(gameOverReset,200);
+                return;
+    }    
 }
 /**
  * game over, add the game-over background
